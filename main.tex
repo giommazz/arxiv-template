@@ -1,0 +1,156 @@
+% --------------------------------------
+% Partially inspired from https://github.com/kourgeorge/arxiv-style and other sources
+% --------------------------------------
+
+%\documentclass[runningheads]{llncs}
+\documentclass[a4wide]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{lmodern}
+\usepackage{babel}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{scalerel,stackengine,amsmath}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc}
+\usepackage[ruled,linesnumbered]{algorithm2e}
+%\usepackage{algorithm,algorithmic}
+\usepackage{accents}
+\usepackage{xcolor,color}
+\usepackage{parskip}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage[hyperfootnotes=false]{hyperref}
+\usepackage{thmtools}
+\usepackage{stmaryrd}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{alphabeta} % Allows \alpha, etc. in text mode.
+\usepackage{thm-restate}
+\usepackage{nicefrac}
+\usepackage{natbib}
+
+\newcommand{\redTodo}[1]{\textcolor{red}{[SP: #1]}}
+\newcommand{\blueTodo}[1]{\textcolor{blue}{[CS: #1]}}
+\newcommand{\tk}{\textbf{\textcolor{red}{tk}}}
+
+\DeclareMathOperator*{\argmin}{\mathrm{arg\,min}}
+\DeclareMathOperator*{\argmax}{\mathrm{arg\,max}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+
+\hoffset       0.3cm
+\voffset       -1.1cm
+\oddsidemargin -0.3cm
+\textwidth     16.5cm
+\topmargin     0.0cm
+\headheight    0.0cm
+\textheight    22.7cm
+\tolerance     1000
+
+% to include or not the appendix
+\newif\ifarxiv
+\arxivtrue
+
+% to include for OPUS only
+\newif\ifopus
+\opusfalse
+
+% Font for math and code
+\usepackage[scaled=0.95]{FiraMono}
+\ifarxiv
+\usepackage{arxiv}
+\usepackage{charter}
+\usepackage{fullpage}
+\fi
+
+\ifopus
+\usepackage{zibtitlepage}
+\fi
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    citecolor=blue
+    }
+
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
+    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
+
+\ifarxiv
+\author{ \href{https://orcid.org/0000-0003-3673-966X}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Gabriele Iommazzo\thanks{Zuse Institute Berlin, Takustr. 7, 14195 Berlin, Germany} \\
+\texttt{iommazzo@zib.de} \\
+%% examples of more authors
+\And
+\href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Pinco Pallino\thanks{Institute of Pallinos, Address, 10623 Berlin, Germany}\hspace{2mm}\footnotemark[1]\\
+\texttt{ppallino@zib.de} \\
+}
+\else
+\author{Gabriele Iommazzo\inst{1}\orcidID{0000-0003-3673-966X} \and
+Pinco Pallino\inst{1, 2}\orcidID{0000-0000-0000-0000}
+}
+\authorrunning{G. Iommmazzo et al.}
+\institute{Zuse Institute Berlin, Germany\and
+Institute of Pallinos, Germany\\
+\email{\{iommazzo, pallino\}@zib.de}
+}
+\fi
+
+\ifopus
+\ZTPAuthor{\ZTPHasOrcid{Gabriele Iommazo}{0000-0003-3673-966X},
+\ZTPHasOrcid{Pinco Pallino}{0000-0000-0000-0000},
+\ZTPTitle{Insert Here}
+\ZTPNumber{xx-xx}
+\ZTPMonth{Month}
+\ZTPYear{Year}
+\fi
+
+\ifopus
+\zibtitlepage
+\fi
+
+\title{Article Title}
+
+\begin{document}
+
+\maketitle
+
+\vspace{5mm}
+
+\begin{center}
+\begin{minipage}{0.85\textwidth}
+\begin{center}
+ \textbf{Abstract}
+\end{center}
+ {\small \lipsum[1-1]}
+\end{minipage}
+\end{center}
+
+\section{Introduction and Related Work}\label{s:intro}
+\lipsum[2] 	\cite{TKM+21,GA19}
+\section{Contributions}\label{s:contributions}
+\lipsum[3]
+\section{Computational Experiments}\label{s:experiments}
+\lipsum[4]
+\section{Conclusion}\label{s:conclusion}
+\lipsum[5]
+
+\ifarxiv
+\bibliographystyle{unsrt}%apalike
+\else
+\bibliographystyle{splncs04}
+\fi
+\bibliography{example_bib}
+
+
+\clearpage
+\appendix
+\onecolumn
+\end{document}

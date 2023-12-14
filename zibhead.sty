@@ -1,0 +1,115 @@
+\RequirePackage{graphicx}
+\RequirePackage{ifthen}%
+\RequirePackage{calc}%
+\providecommand{\zibprintfont}{%
+  \fontsize{7}{8.4}\usefont{\encodingdefault}{phv}{m}{n}%
+  }%
+\providecommand{\zibPrintfont}{%
+  \fontsize{10}{12}\usefont{\encodingdefault}{phv}{m}{n}%
+  }%
+\providecommand{\zibPRINTFONT}{%
+  \fontsize{15}{17}\usefont{\encodingdefault}{phv}{m}{n}%
+  }%
+\newlength{\@zibrightheadwidth}%
+\newcommand\@ziblogofile{ZIB-Primary-Logo_PRINT_Blue-CMYK-tailored}
+\DeclareOption{twoside}{%
+    \setlength{\@zibrightheadwidth}{38mm}%
+}
+\DeclareOption{oneside}{%
+  \setlength{\@zibrightheadwidth}{38mm}%
+}
+\ExecuteOptions{oneside}
+\ProcessOptions\relax
+\newcounter{xdim}%
+\newcounter{ydim}%
+\newcounter{wdim}%
+\newcounter{hdim}%
+\newlength{\@halflineskip}%
+\setlength{\@halflineskip}{0.5\baselineskip}%
+\newlength{\@rulethickness}%
+\setlength{\@rulethickness}{0.25pt}%
+\newlength{\@papervoffset}%
+\newlength{\@paperhoffset}%
+\newlength{\@printeroffset}%
+\newlength{\@zibheadwidth}%
+\newlength{\@zibleftheadwidth}%
+\newlength{\@ziblogowidth}%
+\newlength{\@ziblogoheight}%
+\newlength{\@ziblogoraise}%
+\newlength{\@ziblogosep}%
+\newlength{\@zibheaduppermargin}%
+\newlength{\@zibheadleftmargin}%
+\newlength{\@zibheadrightmargin}%
+\newlength{\@zibheadvoffset}%
+\newlength{\@zibheadhoffset}%
+\setlength{\@printeroffset}{1in}%
+\setlength{\@zibheaduppermargin}{24mm}%
+% this changes behaviour in one- and twoside layout
+\setlength{\@zibheadleftmargin}{\evensidemargin}%
+\setlength{\@zibheadrightmargin}{14mm}%
+\setlength{\@ziblogowidth}{34mm}%
+\setlength{\@ziblogoheight}{22mm}%
+\setlength{\@ziblogoraise}{-12mm}%
+\setlength{\@ziblogosep}{1mm}%
+\newcommand\@zibheadlengthupdate{%
+  \setlength{\@papervoffset}{%
+    -\topmargin
+    -\@printeroffset
+    -\headheight
+    -\headsep
+    }%
+  \setlength{\@paperhoffset}{%
+    -\oddsidemargin
+    -\@printeroffset
+    }%
+  \setlength{\@zibheadwidth}{%
+    \paperwidth
+    -\@zibheadrightmargin
+    -\@zibheadleftmargin
+    }%
+  \setlength{\@zibleftheadwidth}{%
+    \@zibheadwidth
+    -\@ziblogowidth
+    -\@zibrightheadwidth
+    -2\@ziblogosep
+    }%
+  \setlength{\@zibheadhoffset}{%
+    \@zibheadleftmargin
+    +\@paperhoffset
+    }%
+  \setlength{\@zibheadvoffset}{%
+    \@zibheaduppermargin
+    -\@printeroffset
+    -\topmargin}%
+  }%
+\newcommand{\@zibhead}[7]{%
+  \parbox{\@zibheadwidth}{%
+    \parbox[t]{\@zibleftheadwidth}{%
+      \rule{\@zibleftheadwidth}{\@rulethickness}\\%
+      \zibPRINTFONT #1\\%
+      \zibPRINTFONT #2%
+      }%
+    \hspace{\@ziblogosep}%
+    \raisebox{\@ziblogoraise}{%
+      \setlength{\unitlength}{1sp}%
+      \setcounter{wdim}{\@ziblogowidth}%
+      \setcounter{hdim}{\@ziblogoheight}%
+      \begin{picture}(\value{wdim},\value{hdim})%
+        \put(0,0){\makebox(\value{wdim},\value{hdim})[bl]{%
+            \includegraphics[width=\@ziblogowidth]{\@ziblogofile}%
+            }%
+          }%
+      \end{picture}%
+      }%
+    \hspace{\@ziblogosep}%
+    \parbox[t]{\@zibrightheadwidth}{%
+      \rule{\@zibrightheadwidth}{\@rulethickness}\\[.6ex]
+      \zibprintfont #3\\
+      \zibprintfont #4\\
+      \zibprintfont #5\\
+      \zibprintfont #6\\
+      \zibprintfont #7%
+      }%
+    }%
+  }%
+%% - eof -
