@@ -11,30 +11,40 @@
 \usepackage{lmodern}
 \usepackage{babel}
 \usepackage{lipsum}
+
 \usepackage{graphicx}
+\usepackage{accents}
+\usepackage{xcolor,color}
+\usepackage{parskip}
 \usepackage{scalerel,stackengine,amsmath}
 \usepackage{subcaption}
 \usepackage{tikz}
 \usetikzlibrary{positioning, calc}
+
+% format algorithm2e
 \usepackage[ruled,linesnumbered]{algorithm2e}
-%\usepackage{algorithm,algorithmic}
-\usepackage{accents}
-\usepackage{xcolor,color}
-\usepackage{parskip}
+\SetKwComment{Comment}{$\triangleright$ }{}
+\RestyleAlgo{ruled}
+
 \usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
-\usepackage[hyperfootnotes=false]{hyperref}
 \usepackage{thmtools}
+\usepackage{thm-restate}
 \usepackage{stmaryrd}
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{alphabeta} % Allows \alpha, etc. in text mode.
-\usepackage{thm-restate}
 \usepackage{nicefrac}
 \usepackage{natbib}
+
+% references and hyperlinks
+\usepackage[hyperfootnotes=false]{hyperref}
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}  
+\crefname{equation}{}{} % you can \cref an equation and you only get (X)
 
 \newcommand{\redTodo}[1]{\textcolor{red}{[SP: #1]}}
 \newcommand{\blueTodo}[1]{\textcolor{blue}{[CS: #1]}}
 \newcommand{\tk}{\textbf{\textcolor{red}{tk}}}
+\newcommand{\innp}[1]{\langle #1 \rangle}
 
 \DeclareMathOperator*{\argmin}{\mathrm{arg\,min}}
 \DeclareMathOperator*{\argmax}{\mathrm{arg\,max}}
@@ -133,15 +143,36 @@ Institute of Pallinos, Germany\\
 \end{minipage}
 \end{center}
 
+% ----------
 \section{Introduction and Related Work}\label{s:intro}
-\lipsum[2] 	\cite{TKM+21,GA19}
+
+Example algorithm
+
+\begin{algorithm}[H]\label{algo:algo1}
+\caption{Algorithm}
+\KwData{Input}
+%\KwResult{Output}
+
+\For{$t = 0, \dots T-1$}{
+    do something with $x$ \Comment*{Right justified comment}
+
+	do something with yy
+}
+\end{algorithm}
+
+% ----------
 \section{Contributions}\label{s:contributions}
 \lipsum[3]
+
+% ----------
 \section{Computational Experiments}\label{s:experiments}
 \lipsum[4]
+
+% ----------
 \section{Conclusion}\label{s:conclusion}
 \lipsum[5]
 
+% ----------
 \ifarxiv
 \bibliographystyle{unsrt}%apalike
 \else
