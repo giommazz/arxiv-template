@@ -3,48 +3,44 @@
 % --------------------------------------
 
 %\documentclass[runningheads]{llncs}
-\documentclass[a4wide]{article}
+\documentclass[a4paper]{article}
 
+\usepackage{enumitem}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage{lmodern}
 \usepackage{babel}
 \usepackage{lipsum}
-
 \usepackage{graphicx}
-\usepackage{accents}
-\usepackage{xcolor,color}
-\usepackage{parskip}
 \usepackage{scalerel,stackengine,amsmath}
 \usepackage{subcaption}
 \usepackage{tikz}
 \usetikzlibrary{positioning, calc}
-
-% format algorithm2e
-\usepackage[ruled,linesnumbered]{algorithm2e}
-\SetKwComment{Comment}{$\triangleright$ }{}
-\RestyleAlgo{ruled}
-
+%\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\usepackage{algorithm,algorithmic}
+\usepackage{accents}
+\usepackage{xcolor,color}
+\usepackage{parskip}
+% math
+% bold math
+\usepackage{bm}
 \usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage[hyperfootnotes=false]{hyperref}
 \usepackage{thmtools}
-\usepackage{thm-restate}
 \usepackage{stmaryrd}
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{alphabeta} % Allows \alpha, etc. in text mode.
+\usepackage{thm-restate}
 \usepackage{nicefrac}
-\usepackage{natbib}
-
-% references and hyperlinks
-\usepackage[hyperfootnotes=false]{hyperref}
-\usepackage[capitalise,nameinlink,noabbrev]{cleveref}  
-\crefname{equation}{}{} % you can \cref an equation and you only get (X)
+%\usepackage{natbib}
 
 \newcommand{\redTodo}[1]{\textcolor{red}{[SP: #1]}}
 \newcommand{\blueTodo}[1]{\textcolor{blue}{[CS: #1]}}
 \newcommand{\tk}{\textbf{\textcolor{red}{tk}}}
-\newcommand{\innp}[1]{\langle #1 \rangle}
 
 \DeclareMathOperator*{\argmin}{\mathrm{arg\,min}}
 \DeclareMathOperator*{\argmax}{\mathrm{arg\,max}}
@@ -54,22 +50,26 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{remark}[theorem]{Remark}
 
-\hoffset       0.3cm
-\voffset       -1.1cm
-\oddsidemargin -0.3cm
-\textwidth     16.5cm
-\topmargin     0.0cm
-\headheight    0.0cm
-\textheight    22.7cm
-\tolerance     1000
-
 % to include or not the appendix
 \newif\ifarxiv
-\arxivtrue
+\arxivfalse
 
 % to include for OPUS only
 \newif\ifopus
-\opusfalse
+\opustrue
+
+\ifarxiv
+    \newif\ifarxivoropus
+        \arxivoropustrue
+\else
+    \ifopus
+        \newif\ifarxivoropus
+            \arxivoropustrue
+    \else
+        \newif\ifarxivoropus
+            \arxivoropusfalse
+    \fi
+\fi
 
 % Font for math and code
 \usepackage[scaled=0.95]{FiraMono}
@@ -81,6 +81,9 @@
 
 \ifopus
 \usepackage{zibtitlepage}
+\usepackage{arxiv}
+\usepackage{charter}
+\usepackage{fullpage}
 \fi
 
 \hypersetup{
@@ -94,41 +97,52 @@
 \newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
     \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
 
-\ifarxiv
-\author{ \href{https://orcid.org/0000-0003-3673-966X}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Gabriele Iommazzo\thanks{Zuse Institute Berlin, Takustr. 7, 14195 Berlin, Germany} \\
-\texttt{iommazzo@zib.de} \\
-%% examples of more authors
-\And
-\href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Pinco Pallino\thanks{Institute of Pallinos, Address, 10623 Berlin, Germany}\hspace{2mm}\footnotemark[1]\\
-\texttt{ppallino@zib.de} \\
+\ifarxivoropus
+\author{
+    \href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Author One\thanks{Institute A, University A, City A, Country A. Author One is now at Research Institute B, City B, Country B (\texttt{authorone@email.com})}\\
+    \And
+    \href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Author Two\footnotemark[2]\\
+    \texttt{authortwo@email.com} \\
+    \And
+    \href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Author Three\thanks{Department C, University C, City C, Country C} \\
+    \texttt{authorthree@email.com} \\
+    \And
+    \href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Author Four\footnotemark[2]\\
+    \texttt{authorfour@email.com} \\
 }
 \else
-\author{Gabriele Iommazzo\inst{1}\orcidID{0000-0003-3673-966X} \and
-Pinco Pallino\inst{1, 2}\orcidID{0000-0000-0000-0000}
+\author{Author One\inst{1}\orcidID{0000-0000-0000-0000} \and
+Author Two\inst{2}\orcidID{0000-0000-0000-0000}\and
+Author Three\inst{3}\orcidID{0000-0000-0000-0000}\and
+Author Four\inst{2}\orcidID{0000-0000-0000-0000}
 }
-\authorrunning{G. Iommmazzo et al.}
-\institute{Zuse Institute Berlin, Germany\and
-Institute of Pallinos, Germany\\
-\email{\{iommazzo, pallino\}@zib.de}
+\authorrunning{A. One et al.}
+\institute{Institute A, University A, City A, Country A\and
+Department A, University C, City C, Country C\\
+\email{authorone@email.com, \{authortwo,authorthree,authorfour\}@email.com}}
 }
 \fi
 
 \ifopus
-\ZTPAuthor{\ZTPHasOrcid{Gabriele Iommazzo}{0000-0003-3673-966X},
-\ZTPHasOrcid{Pinco Pallino}{0000-0000-0000-0000},
-\ZTPTitle{Insert Here}
-\ZTPNumber{xx-xx}
-\ZTPMonth{Month}
-\ZTPYear{Year}
+\ZTPAuthor{
+    \ZTPHasOrcid{Author One}{0000-0000-0000-0000},
+    \ZTPHasOrcid{Author Two}{0000-0000-0000-0000},
+    \ZTPHasOrcid{Author Three}{0000-0000-0000-0000},
+    \ZTPHasOrcid{Author Four}{0000-0000-0000-0000},}
+\ZTPTitle{A learning-based mathematical programming formulation for the automatic configuration of optimization solvers}
+\ZTPNumber{23-28}
+\ZTPMonth{December}
+\ZTPYear{2023}
 \fi
 
-\ifopus
-\zibtitlepage
-\fi
-
-\title{Article Title}
+\title{A learning-based mathematical programming formulation for the automatic configuration of optimization solvers
+\thanks{This paper is a result of a fictional project funded by the European Union's Horizon 2020 research and innovation programme.}}
 
 \begin{document}
+
+% \ifopus
+% \zibtitlepage
+% \fi
 
 \maketitle
 
@@ -139,12 +153,15 @@ Institute of Pallinos, Germany\\
 \begin{center}
  \textbf{Abstract}
 \end{center}
- {\small \lipsum[1-1]}
+ {\small We propose a methodology, based on machine learning and optimization, for selecting a solver configuration for a given instance. First, we employ a set of solved instances and configurations in order to learn a performance function of the solver. Secondly, we formulate a mixed-integer nonlinear program where the objective/constraints explicitly encode the learnt information, and which we solve, upon the arrival of an unknown instance, to find the best solver configuration for that instance, based on the performance function. The main novelty of our approach lies in the fact that the configuration set search problem is formulated as a mathematical program, which allows us to a) enforce hard dependence and compatibility constraints on the configurations, and b) solve it efficiently with off-the-shelf optimization tools.
+% We would like to encourage you to list your keywords within
+% the abstract section using the \keywords{...} command.
+\keywords{automatic algorithm configuration, mathematical programming, machine learning, optimization solver configuration, hydro unit committment}
+}
 \end{minipage}
 \end{center}
 
-% ----------
-\section{Introduction and Related Work}\label{s:intro}
+\section{Introduction}\label{s:intro}
 
 Example algorithm
 
