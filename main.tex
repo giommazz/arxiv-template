@@ -3,9 +3,8 @@
 % --------------------------------------
 
 %\documentclass[runningheads]{llncs}
-\documentclass[a4paper]{article}
+\documentclass[a4wide]{article}
 
-\usepackage{enumitem}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
@@ -17,15 +16,14 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usetikzlibrary{positioning, calc}
+
 \usepackage[ruled,linesnumbered]{algorithm2e}
-\usepackage{algpseudocode}
+\SetKwComment{Comment}{$\triangleright$ }{}
+\RestyleAlgo{ruled}
 \usepackage{accents}
 \usepackage{xcolor,color}
 \usepackage{parskip}
-% math
-% bold math
-\usepackage{bm}
-\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools,bm}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
 \usepackage[hyperfootnotes=false]{hyperref}
 \usepackage{thmtools}
 \usepackage{stmaryrd}
@@ -35,12 +33,19 @@
 \usepackage{thm-restate}
 \usepackage{nicefrac}
 %\usepackage{natbib}
-% strikethrough word
-\usepackage[normalem]{ulem}
+
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
+% these two lines make sure that \cref{eq:eq_14} gives "Eq.~(14)"
+\crefformat{equation}{#2#1#3}
+\Crefformat{equation}{Equation~#2#1#3}
 
 \newcommand{\redTodo}[1]{\textcolor{red}{[SP: #1]}}
 \newcommand{\blueTodo}[1]{\textcolor{blue}{[CS: #1]}}
 \newcommand{\tk}{\textbf{\textcolor{red}{tk}}}
+\newcommand{\mP}{\mathcal{P}}
+\newcommand{\mQ}{\mathcal{Q}}
+\newcommand{\mX}{\mathcal{X}}
+\newcommand{\innp}[1]{\langle #1 \rangle}
 
 \DeclareMathOperator*{\argmin}{\mathrm{arg\,min}}
 \DeclareMathOperator*{\argmax}{\mathrm{arg\,max}}
@@ -49,27 +54,15 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
 
 % to include or not the appendix
 \newif\ifarxiv
-\arxivfalse
+\arxivtrue
 
 % to include for OPUS only
 \newif\ifopus
-\opustrue
-
-\ifarxiv
-    \newif\ifarxivoropus
-        \arxivoropustrue
-\else
-    \ifopus
-        \newif\ifarxivoropus
-            \arxivoropustrue
-    \else
-        \newif\ifarxivoropus
-            \arxivoropusfalse
-    \fi
-\fi
+\opusfalse
 
 % Font for math and code
 \usepackage[scaled=0.95]{FiraMono}
@@ -81,9 +74,6 @@
 
 \ifopus
 \usepackage{zibtitlepage}
-\usepackage{arxiv}
-\usepackage{charter}
-\usepackage{fullpage}
 \fi
 
 \hypersetup{
