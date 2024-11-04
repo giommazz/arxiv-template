@@ -39,18 +39,24 @@
 \crefname{equation}{Eq.}{Eqs.}
 \Crefname{equation}{Eq.}{Eqs.}
 
-\newcommand{\redTodo}[1]{\textcolor{red}{[SP: #1]}}
 \newcommand{\mP}{\mathcal{P}}
 \newcommand{\mQ}{\mathcal{Q}}
 \newcommand{\mX}{\mathcal{X}}
+\newcommand{\mA}{\mathcal{A}}
+\newcommand{\verts}{\mathsf{vert}}
+\newcommand{\conv}{\mathsf{conv}}
+\newcommand{\faces}{\mathsf{faces}}
+\newcommand{\dist}{\mathsf{dist}}
+\newcommand{\proj}{\mathsf{Proj}}
 \newcommand{\innp}[1]{\langle #1 \rangle}
+\newcommand{\gabrev}[1]{\textcolor{cyan}{#1}}
 \newcommand\allbf[1]{{\boldmath\textbf{#1}}} % generic bold for both math and text mode
-\newcommand{\gi}[1]{\textcolor{red}{#1}}
-
+\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
 
 \DeclareMathOperator*{\argmin}{\mathrm{arg\,min}}
 \DeclareMathOperator*{\argmax}{\mathrm{arg\,max}}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -58,6 +64,8 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{example}[theorem]{Example}
 
 % to include or not the appendix
 \newif\ifarxiv
