@@ -43,15 +43,16 @@
 \newcommand{\mQ}{\mathcal{Q}}
 \newcommand{\mX}{\mathcal{X}}
 \newcommand{\mA}{\mathcal{A}}
-\newcommand{\verts}{\mathsf{vert}}
-\newcommand{\conv}{\mathsf{conv}}
-\newcommand{\faces}{\mathsf{faces}}
-\newcommand{\dist}{\mathsf{dist}}
+\newcommand{\verts}[1]{\mathsf{vert}\left(#1\right)}
+\newcommand{\conv}[1]{\mathsf{conv}\left(#1\right)}
+\newcommand{\aff}[1]{\mathsf{aff}\left(#1\right)}
+\newcommand{\faces}[1]{\mathsf{faces}\left(#1\right)}
+\newcommand{\facets}[1]{\mathsf{facets}\left(#1\right)}
+\newcommand{\dist}[1]{\mathsf{dist}\left(#1\right)}
 \newcommand{\proj}{\mathsf{Proj}}
 \newcommand{\innp}[1]{\langle #1 \rangle}
 \newcommand{\gabrev}[1]{\textcolor{cyan}{#1}}
 \newcommand\allbf[1]{{\boldmath\textbf{#1}}} % generic bold for both math and text mode
-\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
 
 \DeclareMathOperator*{\argmin}{\mathrm{arg\,min}}
 \DeclareMathOperator*{\argmax}{\mathrm{arg\,max}}
