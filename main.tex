@@ -16,6 +16,8 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usetikzlibrary{positioning, calc}
+\usepackage{datetime}
+
 
 \usepackage[ruled,linesnumbered]{algorithm2e}
 \SetKwComment{Comment}{$\triangleright$ }{}
@@ -23,8 +25,8 @@
 \usepackage{accents}
 \usepackage{xcolor,color}
 \usepackage{parskip}
-\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
-\usepackage[hyperfootnotes=false]{hyperref}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools,bm,bbm}
+\usepackage[colorlinks=true, urlcolor=blue, linktoc = all]{hyperref}
 \usepackage{thmtools}
 \usepackage{stmaryrd}
 \usepackage{multirow}
@@ -34,25 +36,76 @@
 \usepackage{nicefrac}
 %\usepackage{natbib}
 
+
 \usepackage[capitalise,nameinlink,noabbrev]{cleveref}
+\makeatletter
+
+\def\Hy@raisedlink@left#1{%
+    \ifvmode
+        #1%
+    \else
+        \Hy@SaveSpaceFactor
+        \llap{\smash{% \llap{ added
+        \begingroup
+            \let\HyperRaiseLinkLength\@tempdima
+            \setlength\HyperRaiseLinkLength\HyperRaiseLinkDefault
+            \HyperRaiseLinkHook
+        \expandafter\endgroup
+        \expandafter\raise\the\HyperRaiseLinkLength\hbox{%
+            \Hy@RestoreSpaceFactor
+            #1%
+            \Hy@SaveSpaceFactor
+        }%
+        }}% } to close \llap
+        \Hy@RestoreSpaceFactor
+        \penalty\@M\hskip\z@ 
+    \fi
+}
+
+\newcommand\newtarget[2]{\Hy@raisedlink@left{\hypertarget{#1}{}}#2} % sometimes better than raisedlink
+\makeatother
+
+\newcommand\linktoproof[1]{{\normalfont[{\hyperlink{proof:#1}{$\downarrow$}}]}}
+\newcommand\linkofproof[1]{\textbf{of \cref{#1}. }\newtarget{proof:#1}}
+
+\newcommand{\jmlrBlackBox}{\rule{1.5ex}{1.5ex}}
+\providecommand{\BlackBox}{\jmlrBlackBox}
+\newcommand{\jmlrQED}{\hfill\jmlrBlackBox\par\bigskip}
+\providecommand{\proofname}{Proof}
+\renewenvironment{proof}%
+{%
+ \par\noindent{\bfseries\upshape \proofname\ }%
+}%
+{\jmlrQED}
+
+
 % these two lines make sure that \cref{eq:eq_14} gives "Eq.~(14)"
+%\crefname{equation}{}{} % you can \cref an equation and you only get (X)
 \crefname{equation}{Eq.}{Eqs.}
-\Crefname{equation}{Eq.}{Eqs.}
 
 \newcommand{\mP}{\mathcal{P}}
 \newcommand{\mQ}{\mathcal{Q}}
-\newcommand{\mX}{\mathcal{X}}
 \newcommand{\mA}{\mathcal{A}}
-\newcommand{\verts}[1]{\mathsf{vert}\left(#1\right)}
+\newcommand{\mF}{\mathcal{F}}
+\newcommand{\mX}{\mathcal{X}}
+\newcommand{\verts}[1]{\mathcal{V}_{#1}}
 \newcommand{\conv}[1]{\mathsf{conv}\left(#1\right)}
 \newcommand{\aff}[1]{\mathsf{aff}\left(#1\right)}
 \newcommand{\faces}[1]{\mathsf{faces}\left(#1\right)}
 \newcommand{\facets}[1]{\mathsf{facets}\left(#1\right)}
 \newcommand{\dist}[1]{\mathsf{dist}\left(#1\right)}
 \newcommand{\proj}{\mathsf{Proj}}
+\newcommand{\vf}[1]{\mathsf{vf}\left(#1\right)}
+% option available to write squared pyramidal width \pw[#2]{#1}
+\NewDocumentCommand{\pw}{o m}{%
+  \delta%
+  \IfValueT{#1}{^{#1}}%
+  \left(#2\right)%
+}
 \newcommand{\innp}[1]{\langle #1 \rangle}
 \newcommand{\gabrev}[1]{\textcolor{cyan}{#1}}
 \newcommand\allbf[1]{{\boldmath\textbf{#1}}} % generic bold for both math and text mode
+
 
 \DeclareMathOperator*{\argmin}{\mathrm{arg\,min}}
 \DeclareMathOperator*{\argmax}{\mathrm{arg\,max}}
