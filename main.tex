@@ -95,14 +95,23 @@
 \newcommand{\facets}[1]{\mathsf{facets}\left(#1\right)}
 \newcommand{\dist}[1]{\mathsf{dist}\left(#1\right)}
 \newcommand{\proj}{\mathsf{Proj}}
-\newcommand{\vf}[1]{\mathsf{vf}\left(#1\right)}
-% option available to write squared pyramidal width \pw[#2]{#1}
+% option available to write the following constants with an exponent. Use: pw[2]{X}
 \NewDocumentCommand{\pw}{o m}{%
   \delta%
   \IfValueT{#1}{^{#1}}%
-  \left(#2\right)%
+  _{#2}%
 }
-\newcommand{\innp}[1]{\langle #1 \rangle}
+\NewDocumentCommand{\vf}{o m}{%
+  \mathsf{vf}%
+  \IfValueT{#1}{^{#1}}%
+  _{#2}%
+}
+\NewDocumentCommand{\diam}{o m}{
+  \mathsf{diam}
+  \IfValueT{#1}{^{#1}}
+  \left(#2\right)
+}
+\newcommand{\innp}[1]{\left\langle #1 \right\rangle}
 \newcommand{\gabrev}[1]{\textcolor{cyan}{#1}}
 \newcommand\allbf[1]{{\boldmath\textbf{#1}}} % generic bold for both math and text mode
 
@@ -152,42 +161,51 @@
 \newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
     \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
 
-\ifarxivoropus
+\newcommand{\defi}{\stackrel{\mathrm{\scriptscriptstyle def}}{=}}
+
+\ifarxiv
 \author{
-    \href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Author One\thanks{Institute A, University A, City A, Country A. Author One is now at Research Institute B, City B, Country B (\texttt{authorone@email.com})}\\
-    \And
-    \href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Author Two\footnotemark[2]\\
-    \texttt{authortwo@email.com} \\
-    \And
-    \href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Author Three\thanks{Department C, University C, City C, Country C} \\
-    \texttt{authorthree@email.com} \\
-    \And
-    \href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Author Four\footnotemark[2]\\
-    \texttt{authorfour@email.com} \\
+\href{https://orcid.org/0000-0003-3673-966X}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}
+Gabriele Iommazzo\thanks{Zuse Institute Berlin, Berlin, Germany} \\
+\texttt{iommazzo@zib.de} \\
+%% examples of more authors
+\And
+\href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Elias Wirth\thanks{Berlin Institute of Technology, Berlin, Germany}\hspace{2mm}\\
+\texttt{wirth@math.tu-berlin.de} \\
+\And
+\href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}
+David Martínez-Rubio\thanks{Zuse Institute Berlin, Berlin, Germany} \\
+\texttt{martinez-rubio@zib.de} \\
+\And
+\href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Sebastian Pokutta\thanks{Berlin Institute of Technology \& Zuse Institute Berlin, Berlin, Germany}\hspace{2mm}\\
+\texttt{pokutta@zib.de} \\
 }
 \else
-\author{Author One\inst{1}\orcidID{0000-0000-0000-0000} \and
-Author Two\inst{2}\orcidID{0000-0000-0000-0000}\and
-Author Three\inst{3}\orcidID{0000-0000-0000-0000}\and
-Author Four\inst{2}\orcidID{0000-0000-0000-0000}
+\author{Gabriele Iommazzo\inst{1}\orcidID{0000-0003-3673-966X} \and
+David Martinez Rubio\inst{2}\orcidID{0000-0000-0000-0000} \and Elias Wirth\inst{2}\orcidID{0000-0000-0000-0000} \and
+Sebastian Pokutta\inst{1,2}\orcidID{0000-0000-0000-0000}
 }
-\authorrunning{A. One et al.}
-\institute{Institute A, University A, City A, Country A\and
-Department A, University C, City C, Country C\\
-\email{authorone@email.com, \{authortwo,authorthree,authorfour\}@email.com}}
+\authorrunning{G. Iommmazzo et al.}
+\institute{Zuse Institute Berlin, Germany\and
+Berlin Institute of Technology, Berlin, Germany\\
+\email{\{iommazzo,martinez-rubio,pokutta\}@zib.de\and wirth@math.tu-berlin.de}
 }
 \fi
 
+
 \ifopus
-\ZTPAuthor{
-    \ZTPHasOrcid{Author One}{0000-0000-0000-0000},
-    \ZTPHasOrcid{Author Two}{0000-0000-0000-0000},
-    \ZTPHasOrcid{Author Three}{0000-0000-0000-0000},
-    \ZTPHasOrcid{Author Four}{0000-0000-0000-0000},}
-\ZTPTitle{A learning-based mathematical programming formulation for the automatic configuration of optimization solvers}
-\ZTPNumber{23-28}
-\ZTPMonth{December}
-\ZTPYear{2023}
+\ZTPAuthor{\ZTPHasOrcid{Gabriele Iommazzo}{0000-0003-3673-966X},
+\ZTPAuthor{\ZTPHasOrcid{Elias Wirth}{0000-0000-0000-0000},
+\ZTPAuthor{\ZTPHasOrcid{David Martinez Rubio}{0000-0000-0000-0000},
+\ZTPAuthor{\ZTPHasOrcid{Sebastian Pokutta}{0000-0000-0000-0000},
+\ZTPTitle{Insert Here}
+\ZTPNumber{xx-xx}
+\ZTPMonth{Month}
+\ZTPYear{Year}
+\fi
+
+\ifopus
+\zibtitlepage
 \fi
 
 \title{A learning-based mathematical programming formulation for the automatic configuration of optimization solvers
