@@ -1,0 +1,294 @@
+% -----------------------------------------------
+% PACKAGES
+
+% TODOS
+\usepackage{todonotes}
+
+% DEFINITIONS
+\usepackage{xparse}
+\usepackage{xargs} % define commands with multiple arguments with default a value http://www.texfaq.org/FAQ-twooptarg
+
+% ALGORITHM PSEUDOCODE
+% Wrapper for pseudocode
+\usepackage{algorithm}
+%\usepackage{algpseudocode}
+\usepackage{algcompatible}
+
+% MISC
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{lmodern}
+\usepackage{babel}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{scalerel,stackengine,amsmath}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc}
+\usepackage{datetime}
+
+\usepackage{accents}
+\usepackage{xcolor,color}
+\usepackage{parskip}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools,bm,bbm}
+\usepackage[colorlinks=true, urlcolor=blue, linktoc = all]{hyperref}
+\usepackage{thmtools}
+\usepackage{stmaryrd}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{alphabeta} % Allows \alpha, etc. in text mode.
+\usepackage{thm-restate}
+\usepackage{nicefrac}
+%\usepackage{natbib}
+
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
+
+% Font for math and code
+% \usepackage[scaled=0.95]{FiraMono}
+\usepackage{libertinus}
+\usepackage{libertinust1math}
+
+
+
+
+
+
+
+
+
+% -----------------------------------------------
+% TODOS
+\newif\ifTODO 
+
+% \TODOtrue
+%\ifanonsubmission \TODOfalse \fi
+\TODOfalse
+
+\definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+
+\newcommand{\Gab}[1]{\ifTODO \todo[inline,author=GI, caption={}, color=aquamarine]{#1} \fi}
+
+\newcommand{\gab}[1]{\ifTODO \todo[size=\scriptsize, color=aquamarine]{GI: #1}{} \fi}
+
+\newcommand{\gabrev}[1]{\textcolor{black}{#1}}
+
+\ifTODO
+% Make the paper wider if ifTODO is set so that the notes fit
+\paperwidth=\dimexpr \paperwidth + 6cm\relax
+\oddsidemargin=\dimexpr\oddsidemargin + 3cm\relax
+\evensidemargin=\dimexpr\evensidemargin + 3cm\relax
+\marginparwidth=\dimexpr \marginparwidth + 3cm\relax
+\fi
+
+
+
+
+
+
+
+
+
+
+% -----------------------------------------------
+% DEFINITIONS
+\newcommand{\PL}{\newlink{def:acronym_polyak_lojasiewicz}{PL}}
+\newcommand{\QG}{\newlink{def:acronym_quadratic_growth}{QG}}
+\newcommand{\FW}{\newlink{def:acronym_frank_wolfe}{FW}}
+\newcommand{\AFW}{\newlink{def:acronym_away_frank_wolfe}{AFW}}
+\newcommand{\LMO}{\newlink{def:acronym_linear_minimization_oracle}{LMO}}
+
+\newcommand{\w}[1]{\operatorname{\delta}_{#1}}
+\newcommand{\what}{\operatorname{\bar{\delta}}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\wface}[2]{\operatorname{\Delta}_{#1}(#2)}
+\newcommand{\whatface}[2]{\operatorname{\bar{\Delta}}_{#1}(#2)}
+\newcommand{\bigomega}[1]{\Omega( #1 )}
+\newcommand{\bigomegal}[1]{\Omega\left( #1 \right)}
+\newcommand{\bigo}[1]{O( #1 )}
+\newcommand{\bigol}[1]{O\left( #1 \right)}
+
+% these two lines make sure that \cref{eq:eq_14} gives "Eq.~(14)"
+%\crefname{equation}{}{} % you can \cref an equation and you only get (X)
+\crefname{equation}{Eq.}{Eqs.}
+\newcommand{\mP}{\mathcal{P}}
+\newcommand{\mQ}{\mathcal{Q}}
+\newcommand{\mA}{\mathcal{A}}
+\newcommand{\mF}{\mathcal{F}}
+\newcommand{\mX}{\mathcal{X}}
+\newcommand{\verts}[1]{\mathcal{V}_{#1}}
+\newcommand{\conv}[1]{\mathsf{conv}\left(#1\right)}
+\newcommand{\aff}[1]{\mathsf{aff}\left(#1\right)}
+\newcommand{\faces}[1]{{\mathsf{faces}^\ast}\left(#1\right)}
+\newcommand{\facets}[1]{\mathsf{facets}\left(#1\right)}
+\newcommand{\dist}[1]{\mathsf{dist}\left(#1\right)}
+\newcommand{\proj}{\mathsf{Proj}}
+% option available to write the following constants with an exponent. Use: pw[2]{X}
+\NewDocumentCommand{\pw}{o m}{%
+  \mathop{%
+    \delta%
+    \IfValueT{#1}{^{#1}}%
+    _{#2}%
+  }%
+}
+\NewDocumentCommand{\vf}{o m}{%
+  \mathsf{vf}%
+  \IfValueT{#1}{^{#1}}%
+  _{#2}%
+}
+\NewDocumentCommand{\diam}{o m}{
+  D
+  \IfValueT{#1}{^{#1}}_#2
+}
+\newcommand{\innp}[1]{\left\langle #1 \right\rangle}
+
+\DeclareMathOperator*{\argmin}{\mathrm{arg\,min}}
+\DeclareMathOperator*{\argmax}{\mathrm{arg\,max}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\norm}[1]{\| #1 \|} 
+\newcommand{\defi}{\stackrel{\mathrm{\scriptscriptstyle def}}{=}}
+\newcommand{\defiin}{\stackrel{\mathrm{\scriptscriptstyle def}}{\in}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
+    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
+
+
+
+
+
+
+
+
+% -----------------------------------------------
+% HYPERLINK SETUP
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+
+
+
+
+
+
+
+
+
+% -----------------------------------------------
+% PROOFS
+\makeatletter
+
+\def\Hy@raisedlink@left#1{%
+    \ifvmode
+        #1%
+    \else
+        \Hy@SaveSpaceFactor
+        \llap{\smash{% \llap{ added
+        \begingroup
+            \let\HyperRaiseLinkLength\@tempdima
+            \setlength\HyperRaiseLinkLength\HyperRaiseLinkDefault
+            \HyperRaiseLinkHook
+        \expandafter\endgroup
+        \expandafter\raise\the\HyperRaiseLinkLength\hbox{%
+            \Hy@RestoreSpaceFactor
+            #1%
+            \Hy@SaveSpaceFactor
+        }%
+        }}% } to close \llap
+        \Hy@RestoreSpaceFactor
+        \penalty\@M\hskip\z@ 
+    \fi
+}
+
+\newcommand\newlink[2]{\hyperlink{#1}{\normalcolor #2}}
+\makeatletter
+\newcommand\newtarget[2]{\Hy@raisedlink{\hypertarget{#1}{}}#2}
+\makeatother
+
+\newcommand\linktoproof[1]{{\normalfont[{\hyperlink{proof:#1}{$\downarrow$}}]}}
+\newcommand\linkofproof[1]{\textbf{of \cref{#1}. }\newtarget{proof:#1}}
+
+\newcommand{\jmlrBlackBox}{\rule{1.5ex}{1.5ex}}
+\providecommand{\BlackBox}{\jmlrBlackBox}
+\newcommand{\jmlrQED}{\hfill\jmlrBlackBox\par\bigskip}
+\providecommand{\proofname}{Proof}
+\renewenvironment{proof}%
+{%
+ \par\noindent{\bfseries\upshape \proofname\ }%
+}%
+{\jmlrQED}
+
+
+
+
+
+
+
+
+
+
+% -----------------------------------------------
+% ALGORITHM PSEUDOCODE
+% Config caption names:
+%\renewcommand{\lstlistingname}{Algorithm}
+\algnewcommand{\lst}{\texttt{lst}}
+\algnewcommand{\slst}{\texttt{slst}}
+\algnewcommand{\SEND}{\textbf{send}}
+
+\newsavebox{\algleft}
+\newsavebox{\algright}
+
+\renewcommand{\algorithmiccomment}[1]{\hfill  $\diamond$ #1}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\makeatletter
+\newcounter{algorithmicH}% New algorithmic-like hyperref counter
+\let\oldalgorithmic\algorithmic
+\renewcommand{\algorithmic}{%
+  \stepcounter{algorithmicH}% Step counter
+  \oldalgorithmic}% Do what was always done with algorithmic environment
+% \renewcommand{\theHALG@line}{ALG@line.\thealgorithmicH.\arabic{ALG@line}}
+\makeatother
+
+
+% ========================================================
+\makeatletter
+\newenvironment{breakablealgorithm}
+  {% \begin{breakablealgorithm}
+   \begin{center}
+     \refstepcounter{algorithm}% New algorithm
+     \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
+     \renewcommand{\caption}[2][\relax]{% Make a new \caption
+       {\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+       \ifx\relax##1\relax % #1 is \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+       \else % #1 is not \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+       \fi
+       \kern2pt\hrule\kern2pt
+     }
+  }{% \end{breakablealgorithm}
+     \kern2pt\hrule\relax% \@fs@post for \@fs@ruled
+   \end{center}
+  }
+
+%\newcommand{\theHalgorithm@line}{\thealgorithm.\arabic{algorithm@line}}
+
+\makeatother

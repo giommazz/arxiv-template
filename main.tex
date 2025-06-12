@@ -1,226 +1,30 @@
-% --------------------------------------
-% Partially inspired from https://github.com/kourgeorge/arxiv-style and other sources
-% --------------------------------------
-
-%\documentclass[runningheads]{llncs}
 \documentclass[a4wide]{article}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{textcomp}
-\usepackage{lmodern}
-\usepackage{babel}
-\usepackage{lipsum}
-\usepackage{graphicx}
-\usepackage{scalerel,stackengine,amsmath}
-\usepackage{subcaption}
-\usepackage{tikz}
-\usetikzlibrary{positioning, calc}
-\usepackage{datetime}
 
 
-\usepackage[ruled,linesnumbered]{algorithm2e}
-\SetKwComment{Comment}{$\triangleright$ }{}
-\RestyleAlgo{ruled}
-\usepackage{accents}
-\usepackage{xcolor,color}
-\usepackage{parskip}
-\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools,bm,bbm}
-\usepackage[colorlinks=true, urlcolor=blue, linktoc = all]{hyperref}
-\usepackage{thmtools}
-\usepackage{stmaryrd}
-\usepackage{multirow}
-\usepackage{booktabs}
-\usepackage{alphabeta} % Allows \alpha, etc. in text mode.
-\usepackage{thm-restate}
-\usepackage{nicefrac}
-%\usepackage{natbib}
-
-
-\usepackage[capitalise,nameinlink,noabbrev]{cleveref}
-\makeatletter
-
-\def\Hy@raisedlink@left#1{%
-    \ifvmode
-        #1%
-    \else
-        \Hy@SaveSpaceFactor
-        \llap{\smash{% \llap{ added
-        \begingroup
-            \let\HyperRaiseLinkLength\@tempdima
-            \setlength\HyperRaiseLinkLength\HyperRaiseLinkDefault
-            \HyperRaiseLinkHook
-        \expandafter\endgroup
-        \expandafter\raise\the\HyperRaiseLinkLength\hbox{%
-            \Hy@RestoreSpaceFactor
-            #1%
-            \Hy@SaveSpaceFactor
-        }%
-        }}% } to close \llap
-        \Hy@RestoreSpaceFactor
-        \penalty\@M\hskip\z@ 
-    \fi
-}
-
-\newcommand\newtarget[2]{\Hy@raisedlink@left{\hypertarget{#1}{}}#2} % sometimes better than raisedlink
-\makeatother
-
-\newcommand\linktoproof[1]{{\normalfont[{\hyperlink{proof:#1}{$\downarrow$}}]}}
-\newcommand\linkofproof[1]{\textbf{of \cref{#1}. }\newtarget{proof:#1}}
-
-\newcommand{\jmlrBlackBox}{\rule{1.5ex}{1.5ex}}
-\providecommand{\BlackBox}{\jmlrBlackBox}
-\newcommand{\jmlrQED}{\hfill\jmlrBlackBox\par\bigskip}
-\providecommand{\proofname}{Proof}
-\renewenvironment{proof}%
-{%
- \par\noindent{\bfseries\upshape \proofname\ }%
-}%
-{\jmlrQED}
-
-
-% these two lines make sure that \cref{eq:eq_14} gives "Eq.~(14)"
-%\crefname{equation}{}{} % you can \cref an equation and you only get (X)
-\crefname{equation}{Eq.}{Eqs.}
-
-\newcommand{\mP}{\mathcal{P}}
-\newcommand{\mQ}{\mathcal{Q}}
-\newcommand{\mA}{\mathcal{A}}
-\newcommand{\mF}{\mathcal{F}}
-\newcommand{\mX}{\mathcal{X}}
-\newcommand{\verts}[1]{\mathcal{V}_{#1}}
-\newcommand{\conv}[1]{\mathsf{conv}\left(#1\right)}
-\newcommand{\aff}[1]{\mathsf{aff}\left(#1\right)}
-\newcommand{\faces}[1]{\mathsf{faces}\left(#1\right)}
-\newcommand{\facets}[1]{\mathsf{facets}\left(#1\right)}
-\newcommand{\dist}[1]{\mathsf{dist}\left(#1\right)}
-\newcommand{\proj}{\mathsf{Proj}}
-% option available to write the following constants with an exponent. Use: pw[2]{X}
-\NewDocumentCommand{\pw}{o m}{%
-  \delta%
-  \IfValueT{#1}{^{#1}}%
-  _{#2}%
-}
-\NewDocumentCommand{\vf}{o m}{%
-  \mathsf{vf}%
-  \IfValueT{#1}{^{#1}}%
-  _{#2}%
-}
-\NewDocumentCommand{\diam}{o m}{
-  \mathsf{diam}
-  \IfValueT{#1}{^{#1}}
-  \left(#2\right)
-}
-\newcommand{\innp}[1]{\left\langle #1 \right\rangle}
-\newcommand{\gabrev}[1]{\textcolor{cyan}{#1}}
-\newcommand\allbf[1]{{\boldmath\textbf{#1}}} % generic bold for both math and text mode
-
-
-\DeclareMathOperator*{\argmin}{\mathrm{arg\,min}}
-\DeclareMathOperator*{\argmax}{\mathrm{arg\,max}}
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{fact}[theorem]{Fact}
-\newtheorem{example}[theorem]{Example}
-
-% to include or not the appendix
-\newif\ifarxiv
-\arxivtrue
-
-% to include for OPUS only
-\newif\ifopus
-\opusfalse
-
-% Font for math and code
-\usepackage[scaled=0.95]{FiraMono}
-\ifarxiv
 \usepackage{arxiv}
 \usepackage{charter}
 \usepackage{fullpage}
-\fi
 
-\ifopus
-\usepackage{zibtitlepage}
-\fi
+\title{Title}
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,
-    urlcolor=cyan,
-    citecolor=blue
-    }
-
-\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
-    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
-
-\newcommand{\defi}{\stackrel{\mathrm{\scriptscriptstyle def}}{=}}
-
-\ifarxiv
+\input{config}
 \author{
-\href{https://orcid.org/0000-0003-3673-966X}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}
-Gabriele Iommazzo\thanks{Zuse Institute Berlin, Berlin, Germany} \\
-\texttt{iommazzo@zib.de} \\
-%% examples of more authors
-\And
-\href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Author2\thanks{Berlin Institute of Technology, Berlin, Germany}\hspace{2mm}\\
-\texttt{email} \\
-\And
-\href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}
-Author 3\thanks{Zuse Institute Berlin, Berlin, Germany} \\
-\texttt{email} \\
-\And
-\href{https://orcid.org/0000-0000-0000-0000}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}Author 4\thanks{Zuse Institute Berlin, Berlin, Germany}\hspace{2mm}\\
-\texttt{email} \\
+    \href{https://orcid.org/0000-0003-3673-966X}{\includegraphics[scale=0.06]{orcid_id_icon.eps}}\hspace{1mm}
+    Gabriele Iommazzo\\
+    Zuse Institute Berlin, Berlin, Germany\\
+    \texttt{iommazzo@zib.de}\\
+    %
+    % \And
+    % Author 2\\
+    % Affiliation\\
+    % email\\
 }
-\else
-\author{Gabriele Iommazzo\inst{1}\orcidID{0000-0003-3673-966X} \and
-Author2\inst{2}\orcidID{0000-0000-0000-0000} \and Author 3\inst{2}\orcidID{0000-0000-0000-0000} \and
-Author 4\inst{1,2}\orcidID{0000-0000-0000-0000}
-}
-\authorrunning{G. Iommmazzo et al.}
-\institute{Zuse Institute Berlin, Germany\and
-Berlin Institute of Technology, Berlin, Germany\\
-\email{\{uno, due, tre\}@zib.de\and otheremail}
-}
-\fi
 
 
-\ifopus
-\ZTPAuthor{\ZTPHasOrcid{Gabriele Iommazzo}{0000-0003-3673-966X},
-\ZTPAuthor{\ZTPHasOrcid{Author 2}{0000-0000-0000-0000},
-\ZTPAuthor{\ZTPHasOrcid{Author 3}{0000-0000-0000-0000},
-\ZTPAuthor{\ZTPHasOrcid{Author 4}{0000-0000-0000-0000},
-\ZTPTitle{Insert Here}
-\ZTPNumber{xx-xx}
-\ZTPMonth{Month}
-\ZTPYear{Year}
-\fi
 
-\ifopus
-\zibtitlepage
-\fi
-
-\title{Your title
-\thanks{This paper is a result of a fictional project funded by the European Union's Horizon 2020 research and innovation programme.}}
-
-\newif\ifTODO 
-\TODOtrue
-%\TODOfalse
-\input{todo_config}
 
 \begin{document}
-
-% \ifopus
-% \zibtitlepage
-% \fi
 
 \maketitle
 
@@ -241,17 +45,6 @@ Berlin Institute of Technology, Berlin, Germany\\
 
 Example algorithm
 
-\begin{algorithm}[H]\label{algo:algo1}
-\caption{Algorithm}
-\KwData{Input}
-%\KwResult{Output}
-
-\For{$t = 0, \dots T-1$}{
-    do something with $x$ \Comment*{Right justified comment}
-
-	do something with y
-}
-\end{algorithm}
 
 % ----------
 \section{Contributions}\label{s:contributions}
@@ -263,12 +56,10 @@ Example algorithm
 \section{Conclusion}\label{s:conclusion}
 
 % ----------
-\ifarxiv
-\bibliographystyle{unsrt}%apalike
-\else
+% \bibliographystyle{unsrt}%apalike
 \bibliographystyle{splncs04}
-\fi
-\bibliography{example_bib}
+
+% \bibliography{bib}
 
 
 \clearpage
