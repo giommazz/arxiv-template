@@ -10,7 +10,7 @@
 
 % ALGORITHM PSEUDOCODE
 % Wrapper for pseudocode
-\usepackage{algorithm}
+\usepackage{algorithm}\ev
 %\usepackage{algpseudocode}
 \usepackage{algcompatible}
 
@@ -124,6 +124,7 @@
 \newcommand{\dist}[1]{\mathsf{dist}\left(#1\right)}
 \newcommand{\proj}{\mathsf{Proj}}
 \newcommand{\transpose}[1]{#1^\top}
+\newcommand{\id}{\mathbf{I}}
 % option available to write the following constants with an exponent. Use: pw[2]{X}
 \NewDocumentCommand{\pw}{o m}{%
   \mathop{%
@@ -145,6 +146,12 @@
 % expected value
 \NewDocumentCommand{\ev}{o m}{%
   \mathop{}\!\mathbb{E}%
+  \IfValueT{#1}{^{#1}}%
+  \left[ #2 \right]%
+}
+% variance
+\NewDocumentCommand{\var}{o m}{%
+  \mathop{}\!\operatorname{var}%
   \IfValueT{#1}{^{#1}}%
   \left[ #2 \right]%
 }
