@@ -111,20 +111,21 @@
 % these two lines make sure that \cref{eq:eq_14} gives "Eq.~(14)"
 %\crefname{equation}{}{} % you can \cref an equation and you only get (X)
 \crefname{equation}{Eq.}{Eqs.}
+% sets
 \newcommand{\mP}{\mathcal{P}}
 \newcommand{\mQ}{\mathcal{Q}}
 \newcommand{\mA}{\mathcal{A}}
 \newcommand{\mF}{\mathcal{F}}
 \newcommand{\mX}{\mathcal{X}}
-\newcommand{\verts}[1]{\mathcal{V}_{#1}}
-\newcommand{\conv}[1]{\mathsf{conv}\left(#1\right)}
-\newcommand{\aff}[1]{\mathsf{aff}\left(#1\right)}
-\newcommand{\faces}[1]{{\mathsf{faces}^\ast}\left(#1\right)}
-\newcommand{\facets}[1]{\mathsf{facets}\left(#1\right)}
-\newcommand{\dist}[1]{\mathsf{dist}\left(#1\right)}
-\newcommand{\proj}{\mathsf{Proj}}
-\newcommand{\transpose}[1]{#1^\top}
-\newcommand{\id}{\mathbf{I}}
+\newcommand{\verts}[1]{\mathcal{V}_{#1}} % vertices of a polyhedron
+\newcommand{\conv}[1]{\mathsf{conv}\left(#1\right)} % convex hull
+\newcommand{\aff}[1]{\mathsf{aff}\left(#1\right)} % affine hull
+\newcommand{\faces}[1]{{\mathsf{faces}^\ast}\left(#1\right)} % faces
+\newcommand{\facets}[1]{\mathsf{facets}\left(#1\right)} % facets
+\newcommand{\dist}[1]{\mathsf{dist}\left(#1\right)} % distance function
+\newcommand{\proj}{\mathsf{Proj}} % projection operator
+\newcommand{\transpose}[1]{#1^\top} % transpose matrix
+\newcommand{\id}{\mathbf{I}} % identity matrix
 % option available to write the following constants with an exponent. Use: pw[2]{X}
 \NewDocumentCommand{\pw}{o m}{%
   \mathop{%
