@@ -144,15 +144,21 @@
   D
   \IfValueT{#1}{^{#1}}_#2
 }
-% expected value
+% expected value operator
 \NewDocumentCommand{\ev}{o m}{%
   \mathop{}\!\mathbb{E}%
   \IfValueT{#1}{^{#1}}%
   \left[ #2 \right]%
 }
-% variance
+% variance operator
 \NewDocumentCommand{\var}{o m}{%
   \mathop{}\!\operatorname{Var}%
+  \IfValueT{#1}{^{#1}}%
+  \left[ #2 \right]%
+}
+% probability operator
+\NewDocumentCommand{\proba}{o m}{%
+  \mathop{}\!\mathbb{P}%
   \IfValueT{#1}{^{#1}}%
   \left[ #2 \right]%
 }
