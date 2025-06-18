@@ -188,7 +188,13 @@
 \newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
     \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
 
+% Usage: \circled{1}[\leq]
+\newcommand*\circledaux[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=0.8pt] (char) {#1};}}
 
+\NewDocumentCommand{\circled}{ m o }{%
+    \IfNoValueTF{#2}{ \circledaux{#1} }{ \stackrel{\circledaux{#1}}{#2} }%
+}
 
 
 
