@@ -159,6 +159,12 @@
   \IfValueT{#1}{^{#1}}%
   \left[ #2 \right]%
 }
+% covariance operator (comma-style argument)
+\NewDocumentCommand{\cov}{o m}{%
+  \mathop{}\!\operatorname{Cov}%
+  \IfValueT{#1}{^{#1}}%
+  \left[ #2 \right]%
+}
 % probability operator
 \NewDocumentCommand{\proba}{o m}{%
   \mathop{}\!\mathbb{P}%
