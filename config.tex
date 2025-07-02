@@ -173,6 +173,31 @@
   \IfValueT{#1}{^{#1}}%
   \left( #2 \right)%
 }
+% probability distribution function
+% Usage \PDF[-1]{X}[x], arguments in square brackets are optionale
+\NewDocumentCommand{\PDF}{O{} m o}{%
+  f_{#2}%
+  \IfValueT{#1}{^{#1}}%
+  \IfNoValueTF{#3}{}{%
+    \!\left(#3\right)%
+  }%
+}
+% cumulative distribution function
+\NewDocumentCommand{\CDF}{O{} m o}{%
+  \Phi_{#2}%
+  \IfValueT{#1}{^{#1}}%
+  \IfNoValueTF{#3}{}{%
+    \!\left(#3\right)%
+  }%
+}
+% probability density function
+\NewDocumentCommand{\PMF}{O{} m o}{%
+  p_{#2}%
+  \IfValueT{#1}{^{#1}}%
+  \IfNoValueTF{#3}{}{%
+    \!\left(#3\right)%
+  }%
+}
 % inner product
 \newcommand{\innp}[1]{\left\langle #1 \right\rangle}
 % rank operator
