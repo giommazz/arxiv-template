@@ -149,13 +149,20 @@
   D
   \IfValueT{#1}{^{#1}}_#2
 }
-% expected value operator
-\NewDocumentCommand{\ev}{o m}{%
-  \mathop{}\!\mathbb{E}%
-  \IfValueT{#1}{^{#1}}%
-  \left[ #2 \right]%
-}
-% variance operator
+% expected value operator with optional superscript and subscript
+% plain \ev{X} expected value of X
+% superscript only
+% \ev[2]{X^2} (expected value squared)
+% subscript only
+% \ev[][Y]{\proba{X | Y}} (expected value wrt Y)
+% with both
+% \ev[2][Y]{g(X,Y)}
+\NewDocumentCommand{\ev}{o o m}{
+  \mathop{}\!\mathbb{E}
+  \IfValueT{#1}{^{#1}}
+  \IfValueT{#2}{_{#2}}
+  \left[ #3 \right]
+}% variance operator
 \NewDocumentCommand{\var}{o m}{%
   \mathop{}\!\operatorname{Var}%
   \IfValueT{#1}{^{#1}}%
