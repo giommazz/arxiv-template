@@ -1,4 +1,4 @@
-% ----------------------------------------------- github
+% -----------------------------------------------
 % PACKAGES
 
 \usepackage{arxiv}
@@ -56,7 +56,7 @@
 \usepackage{babel}
 \usepackage{lipsum}
 \usepackage{graphicx}
-\usepackage{scalerel,stackengine}
+\usepackage{scalerel,stackengine,amsmath}
 \usepackage{subcaption}
 \usepackage{tikz}
 \usetikzlibrary{positioning, calc}
@@ -65,7 +65,7 @@
 \usepackage{accents}
 \usepackage{xcolor,color}
 \usepackage{parskip}
-\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools,bm,bbm, centernot} % negate any symbol, e.g., \centernot\implies
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools,bm,bbm,centernot}
 \usepackage[colorlinks=true, urlcolor=blue, linktoc = all]{hyperref}
 \usepackage{thmtools}
 \usepackage{stmaryrd}
@@ -194,19 +194,19 @@
 % with both
 % \ev[2][Y]{g(X,Y)}
 \NewDocumentCommand{\ev}{o o m}{
-	\mathop{}\!\mathbb{E}
-	\IfValueT{#1}{^{#1}}
-	\IfValueT{#2}{_{#2}}
-	\left[ #3 \right]
-	
-	
-}% variance operator
+    \mathop{}\!\mathbb{E}
+    \IfValueT{#1}{^{#1}}
+    \IfValueT{#2}{_{#2}}
+    \left[ #3 \right]
+}
+ 
+% variance operator
 \NewDocumentCommand{\var}{o m}{%
   \mathop{}\!\operatorname{Var}%
   \IfValueT{#1}{^{#1}}%
   \left[ #2 \right]%
 }
-% covariance operator (comma-style argument)
+% covariance operator
 \NewDocumentCommand{\cov}{o m}{%
   \mathop{}\!\operatorname{Cov}%
   \IfValueT{#1}{^{#1}}%
@@ -218,12 +218,12 @@
   \mathop{}\!\operatorname{MI}%
   \IfValueT{#1}{^{#1}}%
   \left( #2 \right)%
-  
+}
 % probability operator
 \NewDocumentCommand{\proba}{o m}{%
-	\mathop{}\!\mathbb{P}%
-	\IfValueT{#1}{^{#1}}%
-	\left( #2 \right)%
+    \mathop{}\!\mathbb{P}%
+    \IfValueT{#1}{^{#1}}%
+    \left( #2 \right)%
 }
 % probability distribution function
 % Usage \PDF[-1]{X}[x], arguments in square brackets are optionale
@@ -350,15 +350,15 @@
     \fi
 }
 
-									 
-													 
+% -----------------------------------
+% Links between proposition or theorem, and its proof
 \newcommand\newlink[2]{\hyperlink{#1}{\normalcolor #2}}
 \makeatletter
 \newcommand\newtarget[2]{\Hy@raisedlink{\hypertarget{#1}{}}#2}
 \makeatother
 
-% -----------------------------------
-% Links between proposition or theorem, and its proof
+									 
+													 
 \newcommand\linktoproof[1]{{\normalfont[{\hyperlink{proof:#1}{$\downarrow$}}]}}
 \newcommand\linkofproof[1]{\textbf{of \cref{#1}. }\newtarget{proof:#1}}
 
@@ -370,8 +370,8 @@
 }
 \newcommand\linkofsol[1]{\textbf{of \cref{#1}. }\newtarget{sol:#1}}
 
-% -----------------------------------
-% new QED square
+
+				
 \newcommand{\jmlrBlackBox}{\rule{1.5ex}{1.5ex}}
 \providecommand{\BlackBox}{\jmlrBlackBox}
 \newcommand{\jmlrQED}{\hfill\jmlrBlackBox\par\bigskip}
