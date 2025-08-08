@@ -62,8 +62,7 @@
 \usepackage{accents}
 \usepackage{xcolor,color}
 \usepackage{parskip}
-\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools,bm,bbm}
-\usepackage{centernot} % negate any symbol, e.g., \centernot\implies
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools,bm,bbm, centernot} % negate any symbol, e.g., \centernot\implies
 \usepackage[colorlinks=true, urlcolor=blue, linktoc = all]{hyperref}
 \usepackage{thmtools}
 \usepackage{stmaryrd}
@@ -259,6 +258,15 @@
 \newtheorem{fact}[theorem]{Fact}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{exercise}[theorem]{Exercise}
+\newenvironment{solution}%
+{%
+  \par\noindent{\bfseries\upshape Solution\ }%
+}%
+{%
+  \jmlrQED
+}
+
 
 \newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
     \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
@@ -326,9 +334,20 @@
 \newcommand\newtarget[2]{\Hy@raisedlink{\hypertarget{#1}{}}#2}
 \makeatother
 
+% -----------------------------------
+% Links between proposition or theorem, and its proof
 \newcommand\linktoproof[1]{{\normalfont[{\hyperlink{proof:#1}{$\downarrow$}}]}}
 \newcommand\linkofproof[1]{\textbf{of \cref{#1}. }\newtarget{proof:#1}}
+% -----------------------------------
+% Links between exercise and its solutions
+\newcommand\linktosol[1]{%
+  \label{#1}%
+  {\normalfont[{\hyperlink{sol:#1}{$\downarrow$}}]}%
+}
+\newcommand\linkofsol[1]{\textbf{of \cref{#1}. }\newtarget{sol:#1}}
 
+% -----------------------------------
+% new QED square
 \newcommand{\jmlrBlackBox}{\rule{1.5ex}{1.5ex}}
 \providecommand{\BlackBox}{\jmlrBlackBox}
 \newcommand{\jmlrQED}{\hfill\jmlrBlackBox\par\bigskip}
