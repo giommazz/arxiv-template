@@ -1,4 +1,4 @@
-% -----------------------------------------------
+% ----------------------------------------------- github
 % PACKAGES
 
 \usepackage{arxiv}
@@ -45,6 +45,9 @@
 % set `mystyle` as default style for all lstlisting
 \lstset{style=mystyle}
 
+
+
+
 % MISC
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -73,6 +76,7 @@
 \usepackage{nicefrac}
 \usepackage[square,authoryear]{natbib}
 \let\cite\citep   % make \cite --> [Author, year]
+
 
 \usepackage[capitalise,nameinlink,noabbrev]{cleveref}
 
@@ -106,6 +110,7 @@
 
 \newcommand{\gabrev}[1]{\textcolor{black}{#1}}
 \newcommand{\warn}[1]{\textcolor{red}{\textbf{#1}}}
+\newcommand{\cmd}[1]{\textcolor{teal}{\textbf{\texttt{#1}}}}
 \newcommand{\bfu}[1]{\textbf{\underline{#1}}}
 
 
@@ -189,10 +194,12 @@
 % with both
 % \ev[2][Y]{g(X,Y)}
 \NewDocumentCommand{\ev}{o o m}{
-  \mathop{}\!\mathbb{E}
-  \IfValueT{#1}{^{#1}}
-  \IfValueT{#2}{_{#2}}
-  \left[ #3 \right]
+	\mathop{}\!\mathbb{E}
+	\IfValueT{#1}{^{#1}}
+	\IfValueT{#2}{_{#2}}
+	\left[ #3 \right]
+	
+	
 }% variance operator
 \NewDocumentCommand{\var}{o m}{%
   \mathop{}\!\operatorname{Var}%
@@ -205,11 +212,18 @@
   \IfValueT{#1}{^{#1}}%
   \left[ #2 \right]%
 }
-% probability operator
-\NewDocumentCommand{\proba}{o m}{%
-  \mathop{}\!\mathbb{P}%
+
+% mutual information operator
+\NewDocumentCommand{\mi}{o m}{%
+  \mathop{}\!\operatorname{MI}%
   \IfValueT{#1}{^{#1}}%
   \left( #2 \right)%
+  
+% probability operator
+\NewDocumentCommand{\proba}{o m}{%
+	\mathop{}\!\mathbb{P}%
+	\IfValueT{#1}{^{#1}}%
+	\left( #2 \right)%
 }
 % probability distribution function
 % Usage \PDF[-1]{X}[x], arguments in square brackets are optionale
@@ -236,6 +250,11 @@
     \!\left(#3\right)%
   }%
 }
+
+
+
+
+
 % inner product
 \newcommand{\innp}[1]{\left\langle #1 \right\rangle}
 % rank operator
@@ -268,6 +287,7 @@
 }
 
 
+
 \newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
     \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
 
@@ -278,6 +298,7 @@
 \NewDocumentCommand{\circled}{ m o }{%
     \IfNoValueTF{#2}{ \circledaux{#1} }{ \stackrel{\circledaux{#1}}{#2} }%
 }
+
 
 
 
@@ -329,6 +350,8 @@
     \fi
 }
 
+									 
+													 
 \newcommand\newlink[2]{\hyperlink{#1}{\normalcolor #2}}
 \makeatletter
 \newcommand\newtarget[2]{\Hy@raisedlink{\hypertarget{#1}{}}#2}
@@ -338,6 +361,7 @@
 % Links between proposition or theorem, and its proof
 \newcommand\linktoproof[1]{{\normalfont[{\hyperlink{proof:#1}{$\downarrow$}}]}}
 \newcommand\linkofproof[1]{\textbf{of \cref{#1}. }\newtarget{proof:#1}}
+
 % -----------------------------------
 % Links between exercise and its solutions
 \newcommand\linktosol[1]{%
