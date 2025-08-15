@@ -42,6 +42,15 @@
   breaklines       = true,
   tabsize          = 4
 }
+\lstdefinelanguage{Julia}{
+  morekeywords={
+  abstract,break,case,catch,const,continue,do,else,elseif,end,export,false,for,function,global,if,import,let,local,macro,module,quote,return,true,try,using,while,mutable,struct,begin
+  },
+  sensitive=true,
+  morecomment=[l]\#,
+  morestring=[b]",
+  morestring=[b]'
+}
 % custom style for listings for julia
 \lstdefinestyle{juliastyle}{
   language       = Julia,
