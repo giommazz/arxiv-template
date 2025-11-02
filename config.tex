@@ -68,6 +68,32 @@
   tabsize          = 4
 }
 
+\lstdefinestyle{cppstyle}{
+  language       = C++,
+  basicstyle     = \ttfamily\small,
+  backgroundcolor= \color{codebg},
+  keywordstyle   = \color{keyword}\bfseries,
+  stringstyle    = \color{string},
+  commentstyle   = \color{comment}\itshape,
+  numberstyle    = \tiny\color{linenums},
+  numbers        = left,
+  showstringspaces = false,
+  breaklines     = true,
+  tabsize        = 4,
+  % additional options:
+  keepspaces     = true,
+  % you can add more C++-specific keywords if needed
+  morekeywords   = {nullptr, override, final, auto, template, typename}
+}
+
+
+
+
+
+
+
+
+
 % decide color of diagonal strikeout line: use as \cancel{}
 \usepackage{cancel}
 \renewcommand{\CancelColor}{\color{red}}
